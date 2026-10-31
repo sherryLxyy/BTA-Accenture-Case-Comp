@@ -1,20 +1,22 @@
--- ============================================================
--- 01_load_and_prepare: data loading and cleansing
--- Run order: 2/4
--- Prerequisite: both CSVs uploaded to /Volumes/ifc/raw/raw_files/
--- Outputs: ifc.raw.{projects, monitoring}
---          ifc.curated.{projects, monitoring, portfolio}
--- Key decision: project_url is the only reliable key
---               (project_number has 1,126 duplicated values)
--- ============================================================
+/* ============================================================
+   01_load_and_prepare: data loading and cleansing
+   Run order: 2/4
+   Prerequisite: both CSVs uploaded to /Volumes/ifc/raw/raw_files/
+   Outputs: ifc.raw.{projects, monitoring}
+            ifc.curated.{projects, monitoring, portfolio}
+   Key decision: project_url is the only reliable key
+                 (project_number has 1,126 duplicated values)
+   Note: block comments are used throughout so the script can be
+         pasted into any SQL editor regardless of leading characters.
+   ============================================================ */
 
 
--- ------------------------------------------------------------
--- Layer 1: raw -- landing only (column renaming + type casting)
--- ------------------------------------------------------------
+/* ------------------------------------------------------------
+   Layer 1: raw -- landing only (column renaming + type casting)
+   ------------------------------------------------------------ */
 
--- multiLine => true is mandatory: Project Description contains line
--- breaks. Without it, 5,000 rows silently become 5,638 rows.
+/* multiLine => true is mandatory: Project Description contains line
+   breaks. Without it, 5,000 rows silently become 5,638 rows. */
 CREATE OR REPLACE TABLE ifc.raw.projects AS
 SELECT
   TRY_CAST(`Date Disclosed` AS DATE)                                      AS date_disclosed,
@@ -70,9 +72,9 @@ FROM read_files(
 );
 
 
--- ------------------------------------------------------------
--- Layer 2: curated -- normalisation, derived measures, join
--- ------------------------------------------------------------
+/* ------------------------------------------------------------
+   Layer 2: curated -- normalisation, derived measures, join
+   ------------------------------------------------------------ */
 
 CREATE OR REPLACE TABLE ifc.curated.projects AS
 SELECT
@@ -115,9 +117,9 @@ SELECT
   CASE WHEN performance_status IN ('Past Due','Watchlist') THEN TRUE ELSE FALSE END AS is_flagged
 FROM ifc.raw.monitoring;
 
--- Primary analysis table: every WS2 / WS3 query reads from here.
--- Dropped projects have no monitoring record (1,232), so performance
--- fields are NULL after the LEFT JOIN -- this is expected, not an error.
+/* Primary analysis table: every WS2 / WS3 query reads from here.
+   Dropped projects have no monitoring record (1,232), so performance
+   fields are NULL after the LEFT JOIN -- this is expected, not an error. */
 CREATE OR REPLACE TABLE ifc.curated.portfolio AS
 SELECT
   p.*,
@@ -129,11 +131,11 @@ LEFT JOIN ifc.curated.monitoring m
   ON p.project_url = m.project_url;
 
 
--- ------------------------------------------------------------
--- Acceptance check: expect 5000 / 3768 / 5000 / 1232 / 6477
--- rows_if_join_on_number is the counter-evidence: joining on
--- project_number inflates the row count by 29.5%.
--- ------------------------------------------------------------
+/* ------------------------------------------------------------
+   Acceptance check: expect 5000 / 3768 / 5000 / 1232 / 6477
+   rows_if_join_on_number is the counter-evidence: joining on
+   project_number inflates the row count by 29.5%.
+   ------------------------------------------------------------ */
 SELECT
   (SELECT COUNT(*) FROM ifc.curated.projects)                          AS projects_rows,
   (SELECT COUNT(*) FROM ifc.curated.monitoring)                        AS monitoring_rows,
