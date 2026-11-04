@@ -13,7 +13,7 @@ Run in this order. Each script is safe to re-run.
 | 5 | `01_data/04_analytics_layer.sql` | `ifc.analytics.config_params`, `ifc.analytics.projects_excl_dropped`, `ifc.curated.project_text_flags` |
 | 6 | `04_answers/ws1/qNN_*.sql` | One file per question (Q01 to Q30), each with its question, assumptions and review flag in the header |
 
-WS1 questions read `ifc.curated.projects`, because the brief says they are answerable from the portfolio file alone.
+Every answer reads `ifc.curated.portfolio`, the project table joined to monitoring. One read surface for WS1, WS2 and WS3, so no two answers can disagree because they read different tables. `ifc.curated.projects` and `monitoring` remain the inputs; the join is one to one, 5,000 rows either way, so questions that do not need monitoring return the same figures from either table.
 
 ## Assumptions register
 
