@@ -6,7 +6,7 @@
    - All amounts are USD millions.
    - project_number is never used: 1,126 values are shared by
      unrelated projects.
-   - "Last 5 years" = approval_year >= YEAR(CURRENT_DATE()) - 5.
+   - "Last 5 years" runs from the snapshot, not from today.
    - total_approved_usd_mm is used for approved amounts; the four
      product columns are never summed to rebuild a total.
 
@@ -24,7 +24,10 @@ SELECT
   region,
   ROUND(SUM(loan_usd_mm), 1) AS total_loan_usd_mm
 FROM ifc.curated.portfolio
-WHERE approval_year >= YEAR(CURRENT_DATE()) - 5
+WHERE approval_date >  add_months((SELECT MAX(as_of_date)
+                                  FROM ifc.curated.portfolio), -60)
+  AND approval_date <= (SELECT MAX(as_of_date)
+                        FROM ifc.curated.portfolio)
 GROUP BY region
 ORDER BY total_loan_usd_mm DESC;
 
@@ -338,7 +341,10 @@ SELECT
   COUNT(*)                             AS projects,
   ROUND(SUM(total_approved_usd_mm), 1) AS approved_usd_mm
 FROM ifc.curated.portfolio
-WHERE approval_year >= YEAR(CURRENT_DATE()) - 5
+WHERE approval_date >  add_months((SELECT MAX(as_of_date)
+                                  FROM ifc.curated.portfolio), -60)
+  AND approval_date <= (SELECT MAX(as_of_date)
+                        FROM ifc.curated.portfolio)
 GROUP BY department
 ORDER BY approved_usd_mm DESC;
 
