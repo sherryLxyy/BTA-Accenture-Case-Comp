@@ -1,20 +1,35 @@
 # IFC WS1 Query Results
 
+> **Run:** produced against the snapshot window, 2026-06-30 with 60 months back
+> (2021-07-01 to 2026-06-30), not against calendar years. An earlier run used
+> calendar years and returned USD 58,320.4 million for Q1; the snapshot window
+> returns 52,375.8 million, which is also the figure quoted in assumption A-01.
+> See `02_q1_window_reconciliation.sql` for the comparison.
+>
+> **Coverage:** Q1 to Q12 and Q18 to Q23. Q13 to Q17 and Q24 to Q30 are not yet
+> in this file.
+
 ## Q1. Total IFC loan investment by region
 
 Projects approved in the last 5 years.
 
 > **Assumption:** Dropped projects are included. They were approved by the Board, so they belong in an approval-based measure.
+>
+> **North America shows zero** because no North American project was approved
+> inside the window. Existing NA commitments still carry USD 375.9 million
+> undisbursed, which is visible in the Q4 view.
 
 |region|total_loan_usd_mm|
 |---|---|
-|Sub-Saharan Africa|16689.5|
-|Latin America|12731.9|
-|East Asia & Pacific|8390|
-|Europe & Central Asia|7865.3|
-|South Asia|6873.3|
-|Middle East|5770.4|
+|Sub-Saharan Africa|15240.2|
+|Latin America|10607.5|
+|East Asia & Pacific|7675.1|
+|Europe & Central Asia|6988.9|
+|South Asia|6531.1|
+|Middle East|5333.1|
 |North America|0|
+
+Seven regions total USD 52,375.8 million across 1,595 projects.
 
 ## Q2. Top 10 projects by total IFC investment
 
