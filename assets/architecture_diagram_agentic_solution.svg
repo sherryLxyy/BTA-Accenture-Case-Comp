@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="880" viewBox="0 0 1680 880" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+<rect width="1680" height="880" fill="#ffffff"/>
+<text x="44" y="50" font-size="26" font-weight="700" fill="#12263a">Forward Deployed Agentic Solution - BigBang</text>
+<text x="44" y="76" font-size="14" fill="#5b6b7c">IFC portfolio analysis on Databricks Unity Catalog   |   5,000 projects   |   400 clients   |   USD 742.6bn approved   |   snapshot 2026-06-30</text>
+<line x1="44" y1="92" x2="1636" y2="92" stroke="#12263a" stroke-width="1.2"/>
+<rect x="44" y="112" width="264" height="25" fill="#9db8d6" rx="3"/>
+<text x="54" y="130" font-size="12.5" font-weight="700" fill="#ffffff" letter-spacing="0.6">1  SOURCES</text>
+<rect x="332" y="112" width="480" height="25" fill="#7fae9c" rx="3"/>
+<text x="342" y="130" font-size="12.5" font-weight="700" fill="#ffffff" letter-spacing="0.6">2  LAKEHOUSE   (Unity Catalog)</text>
+<rect x="836" y="112" width="356" height="25" fill="#d9a26a" rx="3"/>
+<text x="846" y="130" font-size="12.5" font-weight="700" fill="#ffffff" letter-spacing="0.6">3  ANALYSIS</text>
+<rect x="1216" y="112" width="420" height="25" fill="#9b8fc4" rx="3"/>
+<text x="1226" y="130" font-size="12.5" font-weight="700" fill="#ffffff" letter-spacing="0.6">4  DELIVERY</text>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5b6b7c"/></marker></defs>
+<rect x="44" y="152" width="264" height="74" rx="5" fill="#eef4fb" stroke="#9db8d6" stroke-width="1.3"/>
+<text x="57" y="176" font-size="14" font-weight="700" fill="#12263a">projects CSV</text>
+<text x="57" y="194" font-size="12.0" fill="#5b6b7c">5,000 rows x 24 columns</text>
+<rect x="44" y="238" width="264" height="74" rx="5" fill="#eef4fb" stroke="#9db8d6" stroke-width="1.3"/>
+<text x="57" y="262" font-size="14" font-weight="700" fill="#12263a">monitoring CSV</text>
+<text x="57" y="280" font-size="12.0" fill="#5b6b7c">3,768 rows x 10 columns</text>
+<rect x="44" y="324" width="264" height="150" rx="5" fill="#eef4fb" stroke="#9db8d6" stroke-width="1.3"/>
+<text x="57" y="348" font-size="14" font-weight="700" fill="#12263a">Raw defects kept visible</text>
+<text x="57" y="366" font-size="11.4" fill="#5b6b7c">1,126 shared project_number values.</text>
+<text x="57" y="382.9" font-size="11.4" fill="#5b6b7c">1,232 Pending projects with NULL</text>
+<text x="57" y="399.79999999999995" font-size="11.4" fill="#5b6b7c">client_id and NULL performance status.</text>
+<text x="57" y="416.69999999999993" font-size="11.4" fill="#5b6b7c">Multi-line text inside project fields.</text>
+<rect x="332" y="152" width="480" height="74" rx="5" fill="#e8f2ee" stroke="#7fae9c" stroke-width="1.3"/>
+<text x="345" y="176" font-size="14" font-weight="700" fill="#12263a">ifc.raw   landing zone</text>
+<text x="345" y="194" font-size="12.0" fill="#5b6b7c">Volume /Volumes/ifc/raw/raw_files -&gt; read_files, multiLine=true</text>
+<rect x="332" y="238" width="480" height="130" rx="5" fill="#e8f2ee" stroke="#7fae9c" stroke-width="1.3"/>
+<text x="345" y="262" font-size="14" font-weight="700" fill="#12263a">ifc.curated   single read surface</text>
+<text x="345" y="280" font-size="11.6" fill="#5b6b7c">projects (5,000) + monitoring (3,768) + portfolio (5,000 LEFT JOIN</text>
+<text x="345" y="297.1" font-size="11.6" fill="#5b6b7c">keyed on project_url, never on project_number). Duplicate-column</text>
+<text x="345" y="314.20000000000005" font-size="11.6" fill="#5b6b7c">renames, typed casts, range checks, column comments.</text>
+<rect x="332" y="380" width="480" height="146" rx="5" fill="#e8f2ee" stroke="#7fae9c" stroke-width="1.3"/>
+<text x="345" y="404" font-size="14" font-weight="700" fill="#12263a">ifc.analytics   derived layer</text>
+<text x="345" y="422" font-size="11.6" fill="#5b6b7c">project_text_flags: regex signals behind Q13, Q24, Q25, Q26.</text>
+<text x="345" y="439.1" font-size="11.6" fill="#5b6b7c">client_portfolio (400 rows): exposure, deployment, impairment and ECL</text>
+<text x="345" y="456.20000000000005" font-size="11.6" fill="#5b6b7c">per client. client_score: percentile ranks plus attention_score and</text>
+<text x="345" y="473.30000000000007" font-size="11.6" fill="#5b6b7c">growth_score.</text>
+<line x1="308" y1="189" x2="332" y2="189" stroke="#5b6b7c" stroke-width="1.6" marker-end="url(#ar)"/>
+<line x1="308" y1="275" x2="332" y2="214" stroke="#5b6b7c" stroke-width="1.6" marker-end="url(#ar)"/>
+<line x1="572" y1="226" x2="572" y2="238" stroke="#5b6b7c" stroke-width="1.6" marker-end="url(#ar)"/>
+<line x1="572" y1="368" x2="572" y2="380" stroke="#5b6b7c" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="836" y="152" width="356" height="108" rx="5" fill="#fdf1e6" stroke="#d9a26a" stroke-width="1.3"/>
+<text x="849" y="176" font-size="14" font-weight="700" fill="#12263a">WS1   30 baseline questions</text>
+<text x="849" y="194" font-size="11.6" fill="#5b6b7c">One SQL file, every answer reproducible. The date</text>
+<text x="849" y="211.1" font-size="11.6" fill="#5b6b7c">window is pinned to the snapshot, not to the current</text>
+<text x="849" y="228.2" font-size="11.6" fill="#5b6b7c">calendar year.</text>
+<rect x="836" y="272" width="356" height="130" rx="5" fill="#fdf1e6" stroke="#d9a26a" stroke-width="1.3"/>
+<text x="849" y="296" font-size="14" font-weight="700" fill="#12263a">WS2   Board risk question</text>
+<text x="849" y="314" font-size="11.6" fill="#5b6b7c">Category A: 95 projects, USD 11,447.52m disbursed,</text>
+<text x="849" y="331.1" font-size="11.6" fill="#5b6b7c">ECL = 60% x Past Due = USD 3,311.72m. Watchlist</text>
+<text x="849" y="348.20000000000005" font-size="11.6" fill="#5b6b7c">carries no provision. Whole-book sensitivity: USD</text>
+<text x="849" y="365.30000000000007" font-size="11.6" fill="#5b6b7c">7,596.21m.</text>
+<rect x="836" y="414" width="356" height="112" rx="5" fill="#fdf1e6" stroke="#d9a26a" stroke-width="1.3"/>
+<text x="849" y="438" font-size="14" font-weight="700" fill="#12263a">WS3   four client decisions</text>
+<text x="849" y="456" font-size="11.6" fill="#5b6b7c">Percentile scoring, USD 5,000m materiality floor, 19</text>
+<text x="849" y="473.1" font-size="11.6" fill="#5b6b7c">large clients. Two continue, one reduce, one review.</text>
+<line x1="812" y1="206" x2="836" y2="206" stroke="#5b6b7c" stroke-width="1.6" marker-end="url(#ar)"/>
+<line x1="812" y1="445" x2="836" y2="337" stroke="#5b6b7c" stroke-width="1.6" marker-end="url(#ar)"/>
+<line x1="812" y1="452" x2="836" y2="470" stroke="#5b6b7c" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="1216" y="152" width="420" height="108" rx="5" fill="#f0edf8" stroke="#9b8fc4" stroke-width="1.3"/>
+<text x="1229" y="176" font-size="14" font-weight="700" fill="#12263a">Genie space   natural language</text>
+<text x="1229" y="194" font-size="11.6" fill="#5b6b7c">Two sources: portfolio at project grain, client_score at</text>
+<text x="1229" y="211.1" font-size="11.6" fill="#5b6b7c">client grain. Eight written rules pin the unit, the date</text>
+<text x="1229" y="228.2" font-size="11.6" fill="#5b6b7c">window, the ECL formula and the NULL scope.</text>
+<rect x="1216" y="272" width="420" height="148" rx="5" fill="#f0edf8" stroke="#9b8fc4" stroke-width="1.3"/>
+<text x="1229" y="296" font-size="14" font-weight="700" fill="#12263a">Agent   orchestrator + guardrails</text>
+<text x="1229" y="314" font-size="11.6" fill="#5b6b7c">The LLM chooses the tool. Tool 1 Genie (lookup). Tool 2 Risk</text>
+<text x="1229" y="331.1" font-size="11.6" fill="#5b6b7c">Calculator (ECL). Tool 3 Client Analysis (score one</text>
+<text x="1229" y="348.20000000000005" font-size="11.6" fill="#5b6b7c">relationship). Financial guardrails reject unsupported figures</text>
+<text x="1229" y="365.30000000000007" font-size="11.6" fill="#5b6b7c">and every call is logged.</text>
+<rect x="1216" y="432" width="420" height="94" rx="5" fill="#f0edf8" stroke="#9b8fc4" stroke-width="1.3"/>
+<text x="1229" y="456" font-size="14" font-weight="700" fill="#12263a">Board outputs</text>
+<text x="1229" y="474" font-size="11.6" fill="#5b6b7c">Named recommendation. Three-minute demo video. Every figure</text>
+<text x="1229" y="491.1" font-size="11.6" fill="#5b6b7c">traceable to a SQL file.</text>
+<line x1="1192" y1="206" x2="1216" y2="206" stroke="#5b6b7c" stroke-width="1.6" marker-end="url(#ar)"/>
+<line x1="1192" y1="337" x2="1216" y2="337" stroke="#5b6b7c" stroke-width="1.6" marker-end="url(#ar)"/>
+<line x1="1192" y1="470" x2="1216" y2="478" stroke="#5b6b7c" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="44" y="552" width="1592" height="112" rx="5" fill="#f4f4f2" stroke="#b6b6ae" stroke-width="1.3"/>
+<text x="60" y="576" font-size="13.5" font-weight="700" fill="#12263a">GOVERNANCE AND TRUST</text>
+<text x="60" y="600" font-size="11.4" font-weight="700" fill="#12263a">Access</text>
+<text x="60" y="618" font-size="10.7" fill="#5b6b7c">Unity Catalog grants to all four reviewers: workspace Admin,</text>
+<text x="60" y="632" font-size="10.7" fill="#5b6b7c">USE CATALOG, USE SCHEMA + SELECT on raw, curated and</text>
+<text x="60" y="646" font-size="10.7" fill="#5b6b7c">analytics, READ VOLUME, warehouse Can use, and Genie shared</text>
+<text x="60" y="660" font-size="10.7" fill="#5b6b7c">only after the tables.</text>
+<text x="588" y="600" font-size="11.4" font-weight="700" fill="#12263a">Version control</text>
+<text x="588" y="618" font-size="10.7" fill="#5b6b7c">Every answer, table definition and check is a file in Git. The</text>
+<text x="588" y="632" font-size="10.7" fill="#5b6b7c">workspace is a Git folder, not a notebook dump.</text>
+<text x="1116" y="600" font-size="11.4" font-weight="700" fill="#12263a">Reproducibility</text>
+<text x="1116" y="618" font-size="10.7" fill="#5b6b7c">Pipeline rebuilt from the two raw CSVs in a fresh workspace on</text>
+<text x="1116" y="632" font-size="10.7" fill="#5b6b7c">2026-11-13. Headline figures reproduced to the cent.</text>
+<rect x="44" y="680" width="1592" height="108" rx="5" fill="#fdf6f6" stroke="#d9a0a0" stroke-width="1.3"/>
+<text x="60" y="704" font-size="13.5" font-weight="700" fill="#8c2f2f">STATED LIMIT   what the client view does not cover</text>
+<text x="60" y="726" font-size="11.2" fill="#7a3b3b">1,232 of 5,000 projects, USD 187,440.1m of USD 742,558.7m approved and 25.2% of value, are Pending and carry no client_id. Because</text>
+<text x="60" y="741.5" font-size="11.2" fill="#7a3b3b">their performance status is also NULL they score as perfectly clean, and an unlabelled NULL client row would otherwise top the</text>
+<text x="60" y="757.0" font-size="11.2" fill="#7a3b3b">growth ranking. The client view therefore covers 3,768 projects and USD 555,118.6m, 74.8% of approved value, and every client-level</text>
+<text x="60" y="772.5" font-size="11.2" fill="#7a3b3b">statement is scoped to that population.</text>
+<text x="44" y="822" font-size="10.6" fill="#5b6b7c">Files: 01_data/01_load_and_prepare.sql  |  01_data/02_data_quality_checks.sql  |  01_data/04_analytics_layer.sql  |  04_answers/ws1-3  |  02_agent/build_agent.ipynb</text>
+</svg>

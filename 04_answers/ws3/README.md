@@ -59,6 +59,18 @@ required to have no Past Due project, none on the Watchlist, and no exit at a
 loss. A client that has already lost money is not a growth story, however
 large it is.
 
+Within the reduction list the two names are chosen on different measures, not
+as the first two rows of one ranking. **Wenharval ranks first on
+`attention_score`** and is the quality case: eight of its thirty-three projects
+are Past Due and its expected credit loss of USD 853 million is the largest in
+the shortlist. **Mijul ranks seventh on the same score**, because three Past
+Due out of a hundred and six is close to the portfolio average, and is the size
+case: USD 6,657 million still to disburse is the largest remaining commitment
+of any client that carries impairment at all. One name tells the Board where
+the book is deteriorating. The other tells it where a deterioration would be
+most expensive. Ranking both on the same column would have produced two names
+saying the same thing.
+
 The result is not that 19 clients are acceptable and 381 are not. It is that
 within the part of the book large enough to matter, the evidence separates
 cleanly, and this is where it separates.
