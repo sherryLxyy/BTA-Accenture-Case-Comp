@@ -13,12 +13,12 @@
       statement.
 
    2. The materiality floor of USD 5,000 million sits above the 90th
-      percentile of USD 2,333 and selects 19 clients, 46.6% of the
-      book. That is kept: it concentrates the shortlist without
-      losing coverage.
+      percentile of USD 2,333 and selects 18 clients, 28.5% of the
+      client-attached book. That is kept: it concentrates the shortlist
+      without losing coverage.
 
    Scores are recomputed after the NULL exclusion so percentiles are
-   measured against the 400 real clients only.
+   measured against the 399 real clients only.
    ============================================================ */
 
 

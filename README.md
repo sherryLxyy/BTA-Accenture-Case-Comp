@@ -2,7 +2,7 @@
 
 Accenture x BTA, submission for **Team BigBang**, 15 November 2026.
 
-A working analysis of a synthetic IFC portfolio: 5,000 projects, 400 clients,
+A working analysis of a synthetic IFC portfolio: 5,000 projects, 399 clients,
 USD 742.6 billion approved, as of the 2026-06-30 snapshot. Three workstreams,
 one agent, and a set of findings that a Board can act on without asking how
 the numbers were produced.
@@ -47,8 +47,8 @@ capital is not stuck in a relationship that has gone bad; it is stuck before a
 relationship exists.
 
 **Default is concentrated, and the clean names are scarce.** Above a
-materiality floor of USD 5,000 million approved there are 19 clients holding
-46.6% of the book. Only **three** of them carry no Past Due project, no
+materiality floor of USD 5,000 million approved there are 18 clients holding
+28.5% of the client-attached book. Only **three** of them carry no Past Due project, no
 Watchlist project and no exit at a loss. The recommendation names two of those
 three for growth and two impaired names for action.
 
@@ -85,16 +85,19 @@ book by USD 4,284 million.
 |---|---|---|---|---|
 | 1 | **Rosar Telecom Holdings** | Continue to invest | 6,283 | 2,704 |
 | 2 | **Zansorzen Renewables Corp** | Continue to invest | 5,040 | 2,176 |
-| 3 | **Wenharval Renewables Corp** | Reduce exposure | 5,544 | 2,058 |
-| 4 | **Mijul Farms PLC** | Place under review | 15,927 | 6,657 |
+| 3 | **Wenhargal Renewables Corp** | Reduce exposure | 5,544 | 2,058 |
+| 4 | **Bricor Finance Group** | Place under review | 6,156 | 2,708 |
 
 The full reasoning, the scoring method and the defence of each name is in
-`04_answers/ws3/README.md`. Two points belong here:
+`04_answers/ws3/README.md`. Three points belong here:
 
-- The two reduction names are **not** the first two rows of one ranking.
-  Wenharval ranks first on attention score and is the quality case. Mijul ranks
-  seventh and is the size case, USD 6,657 million still to disburse. Ranking
-  both on the same column would have produced two names saying one thing.
+- The two sides hold almost the same capital and are nothing alike in quality.
+  The growth pair carries no provision; the review pair carries 18.3% of the
+  portfolio's expected loss on 1.6% of its approved value.
+- The two reduction names are **not** a ranking of equal things. Wenhargal is a
+  realised loss already on the books, with one project exited at a loss. Bricor
+  is a deterioration still on the Watchlist with nothing yet written off. One
+  name says where the loss is, the other where it is forming.
 - A client that has already lost money cannot be a growth story. The growth
   list therefore requires a completely clean record, which is why it has only
   three names rather than ten.
@@ -162,7 +165,7 @@ ranking. The client analysis excludes them explicitly and says so on every
 page. It covers 3,768 projects and USD 555.1 billion.
 
 **The scores are relative, not absolute.** `attention_score` and `growth_score`
-are weighted percentile ranks across 400 clients. They answer "how does this
+are weighted percentile ranks across 399 clients. They answer "how does this
 client compare with the rest of the book", not "what is the probability of
 default". A score of 90 is not 90% of anything.
 
