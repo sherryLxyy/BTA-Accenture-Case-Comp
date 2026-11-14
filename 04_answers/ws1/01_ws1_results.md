@@ -6,8 +6,9 @@
 > returns 52,375.8 million, which is also the figure quoted in assumption A-01.
 > See `02_q1_window_reconciliation.sql` for the comparison.
 >
-> **Coverage:** Q1 to Q12 and Q18 to Q23. Q13 to Q17 and Q24 to Q30 are not yet
-> in this file.
+> **Coverage:** all thirty questions, Q1 to Q30. Q13 to Q17 and Q24 to Q30 were
+> recorded on the 2026-11-13 run and agreed line by line with an independent
+> recompute from the two source CSVs, which itself reproduces Q1 exactly.
 
 ## Q1. Total IFC loan investment by region
 
@@ -464,6 +465,86 @@ Pending projects whose Projected Board Date has passed as of their As of Date, b
 |Vani Capital Green Credit Line 2025|Paraguay|Latin America|CFG|2026-03-30|2026-03-31|1|121.5895618497093|
 |Praro Foods Poultry|Turkey|Europe & Central Asia|CFG|2026-06-29|2026-06-30|1|47.57619085779222|
 
+## Q13. Active projects whose main purpose is renewable generation
+
+> **Method:** there is no structured purpose field, so this is a keyword match
+> over `project_description`. Two tiers are reported because "main purpose"
+> cannot be operationalised exactly: **broad** is any renewable term, an upper
+> bound; **strict** also requires a power generation term, closer to the intent
+> but dropping renewable projects described in other wording. The true answer
+> lies between the two, and neither tier is a census.
+
+|region|broad_projects|broad_usd_mm|strict_projects|strict_usd_mm|
+|---|---|---|---|---|
+|Sub-Saharan Africa|97|15022.1|15|1973.3|
+|Latin America|59|9448.2|5|703.0|
+|East Asia & Pacific|61|9203.7|12|2029.0|
+|Europe & Central Asia|55|8135.4|7|1230.2|
+|South Asia|34|4523.2|6|850.3|
+|Middle East|29|4468.0|6|1372.0|
+|North America|1|272.1|0|0.0|
+
+336 projects and USD 51,072.7 million on the broad reading, 51 and 8,157.8 on
+the strict one. Reporting the band is the answer; a single number would be a
+choice dressed up as a measurement.
+
+## Q14. Summary of Proposed Investment documents disclosed after 2020
+
+|disclosure_year|documents|
+|---|---|
+|2021|212|
+|2022|193|
+|2023|166|
+|2024|603|
+|2025|457|
+|2026|63|
+
+1,694 documents. The step change between 2023 and 2024 is in the data, not in
+the query: disclosure volume roughly quadruples in one year.
+
+## Q15. Environmental Category A projects that are still Pending
+
+|region|projects|approved_usd_mm|
+|---|---|---|
+|Sub-Saharan Africa|121|17204.3|
+|East Asia & Pacific|71|12052.3|
+|Latin America|71|9656.3|
+|Europe & Central Asia|55|7135.6|
+|South Asia|49|6785.3|
+|Middle East|33|5358.9|
+|North America|2|358.6|
+
+402 projects, USD 58,551.4 million. Seven regions, because the pipeline has
+already merged the two historical spellings; grouping the raw file returns nine.
+
+## Q16. Environmental & Social Review Summary documents, by category
+
+|environmental_category|documents|
+|---|---|
+|A|891|
+|B|517|
+
+1,408 documents and no Category C review summaries at all, which matches the
+file: C projects are screened but not written up.
+
+## Q17. Approved investment by Department, last 5 years
+
+> **Window:** 2021-07-01 to 2026-06-30, the same 60 months Q1 uses.
+
+|department|projects|approved_usd_mm|
+|---|---|---|
+|INF|337|46996.3|
+|MAS|326|46791.1|
+|CFG|337|46207.6|
+|FIG|302|45284.1|
+|CBA|293|42923.5|
+
+**1,595 projects and USD 228,202.6 million.** These are the same two figures the
+Q1 window reconciliation produced from a different query, which is the reason
+this question is worth running: it confirms the window definition holds across
+the whole answer set. The five departments sit within 10% of each other, so the
+book is not carried by one team.
+
 ## Q18. Product Line across regions
 
 Excludes Dropped projects. Returned in long format with both project count and approved amount, because "compare Product Line categories" can mean either. Amounts come from `total_approved_usd_mm`, not from the four product columns, so a project is not double counted.
@@ -784,3 +865,205 @@ Each region's status shares are a percentage of that region's projects. Each row
 |North America|5|20.0|20.0|60.0|0.0|
 |South Asia|510|28.4|20.2|29.0|22.4|
 |Sub-Saharan Africa|1415|24.5|25.2|25.7|24.6|
+
+## Q24. Total new renewable generation capacity, by region
+
+> **Limitation, stated up front:** capacity exists only inside free-text
+> descriptions and is extracted with a regular expression. It is a floor, not a
+> portfolio total. Projects that state capacity in GW, in words, or not at all
+> are silently lost. `projects_without_capacity` is the honesty check: it makes
+> the coverage gap visible instead of hiding it inside an average.
+
+|region|projects|projects_with_capacity|projects_without_capacity|pct_stating_capacity|total_capacity_mw|
+|---|---|---|---|---|---|
+|Sub-Saharan Africa|196|44|152|22.4|13575.0|
+|Europe & Central Asia|96|23|73|24.0|7190.0|
+|East Asia & Pacific|123|27|96|22.0|6175.0|
+|Middle East|64|13|51|20.3|4630.0|
+|Latin America|132|13|119|9.8|4370.0|
+|South Asia|58|14|44|24.1|3295.0|
+|North America|1|0|1|0.0|0.0|
+
+**536 of 670 renewable projects never state a capacity.** The extracted total of
+39,235 MW covers one project in five, so any single figure quoted from this
+table understates the portfolio by a factor of roughly five. Latin America is
+the worst covered at 9.8%, which also means its low total is an artefact of
+reporting rather than of the portfolio.
+
+## Q25. MSME financing, excluding Dropped
+
+> **Limitation:** there is no structured MSME flag. The segment is identified by
+> keyword over the description, so the population is "projects that mention
+> MSMEs", not "MSME projects".
+
+Block one, headline:
+
+|projects|approved_usd_mm|
+|---|---|
+|535|73008.2|
+
+Block two, top five countries:
+
+|country|projects|approved_usd_mm|
+|---|---|---|
+|Brazil|14|2009.1|
+|India|12|1740.3|
+|Nigeria|12|1737.6|
+|Turkey|10|1436.4|
+|Philippines|12|1420.2|
+
+Block three, target groups mentioned inside those 535 descriptions:
+
+|women_owned_or_led|rural|agriculture|youth|first_time_borrowers|low_income|
+|---|---|---|---|---|---|
+|62|36|66|0|0|0|
+
+**The three zeros are the finding.** The dataset cannot answer a youth,
+first-time-borrower or low-income question, and saying so is worth more than a
+keyword match that returns two projects and implies a segment exists.
+
+## Q26. Projects whose description implies a different product from the recorded one
+
+> **Method:** a mismatch is flagged only when exactly ONE product keyword appears
+> and it disagrees with `product_line`. That restriction keeps precision high and
+> errs towards under-reporting: ambiguous descriptions are not flagged.
+
+|product_line|implied_product|projects|approved_usd_mm|
+|---|---|---|---|
+|Risk Management|Loan|123|18979.2|
+|Equity|Loan|66|10265.0|
+|Guarantee|Loan|26|3608.4|
+|Risk Management|Equity|22|2486.7|
+|Loan|Equity|18|2835.1|
+|Loan|Guarantee|15|1998.9|
+|Risk Management|Guarantee|14|2784.5|
+|Loan|Risk Management|11|1354.8|
+|Equity|Guarantee|10|1606.0|
+|Equity|Risk Management|7|1212.7|
+|Guarantee|Equity|7|744.5|
+|Guarantee|Risk Management|1|12.0|
+
+320 projects, USD 47,887.8 million. The direction is not random: every large cell
+moves toward Loan, which says the description text was written around loan
+language while the product line was assigned somewhere else. That is a process
+finding, not a rounding error. The second block lists the eight largest, the
+full list is the query output.
+
+|project_name|country|region|product_line|implied_product|total_approved_usd_mm|
+|---|---|---|---|---|---|
+|Berva Communications Tower Portfolio|Dominican Republic|Latin America|Loan|Equity|299.8|
+|Nian Bank Green Credit Line|India|South Asia|Equity|Loan|298.6|
+|Elro Finance SME Credit Line III|Mozambique|Sub-Saharan Africa|Loan|Risk Management|298.6|
+|Lozen Capital Green Credit Line 2024|Uruguay|Latin America|Equity|Loan|297.4|
+|Elom Communications Mobile Expansion 2019|Peru|Latin America|Risk Management|Loan|296.6|
+|Zensorvet Manufacturing Pharma|Malawi|Sub-Saharan Africa|Loan|Guarantee|295.1|
+|Yorzenta Finance MSME Facility|Brazil|Latin America|Guarantee|Loan|292.6|
+|Zendanras Farms Poultry|Iceland|Europe & Central Asia|Risk Management|Loan|290.3|
+
+## Q27. Bubble chart feed, 15 countries by approved investment
+
+Excludes Dropped. The total column includes guarantee and risk management on top
+of loan and equity, so loan plus equity does not sum to it. Say so rather than
+letting a reader discover it.
+
+|country|loan_usd_mm|equity_usd_mm|total_approved_usd_mm|
+|---|---|---|---|
+|India|4409.8|4157.7|16051.8|
+|Brazil|3136.9|2577.3|11492.0|
+|Indonesia|2235.6|2748.8|11357.2|
+|Nigeria|2369.4|3508.1|10494.0|
+|Vietnam|2925.7|1892.8|10209.8|
+|Turkey|2384.1|2682.3|10158.1|
+|Bangladesh|2160.3|2290.2|8939.7|
+|China|1180.0|2071.3|8621.0|
+|Pakistan|1444.8|1867.9|7992.1|
+|Egypt|1547.0|2028.4|7898.6|
+|Argentina|1345.2|1831.9|7735.3|
+|Ghana|1877.3|2054.7|7553.4|
+|Colombia|1518.2|2159.2|7481.7|
+|Cambodia|1927.8|1426.5|7182.0|
+|Kazakhstan|897.5|2127.3|6336.9|
+
+## Q28. Approved total differs from the sum of the four product allocations
+
+**146 projects**, the count written into the SQL comment. If it moves, the load
+changed. Eight largest by absolute difference:
+
+|project_name|country|region|status|total_approved_usd_mm|product_sum_usd_mm|product_total_diff_usd_mm|
+|---|---|---|---|---|---|---|
+|Danmi Agro Processing Expansion|Colombia|Latin America|Pending|298.6|386.8|-88.2|
+|Nidan Manufacturing Cement|Iceland|Europe & Central Asia|Closed|288.9|373.1|-84.2|
+|Cordansol Foods Processing Expansion|Georgia|Europe & Central Asia|Dropped|298.2|380.3|-82.1|
+|Omharlu Agro Dairy|Madagascar|Sub-Saharan Africa|Pending|276.3|342.9|-66.6|
+|Venom Agro Processing Expansion|Sudan|Sub-Saharan Africa|Pending|290.7|225.7|65.1|
+|Anven Bank SME Credit Line|Azerbaijan|Europe & Central Asia|Pending|299.0|360.5|-61.5|
+|Sarni Power Energy Expansion|Israel|Middle East|Closed|224.2|285.4|-61.1|
+|Varas Works Energy Efficiency 2017|Thailand|East Asia & Pacific|Closed|215.9|274.0|-58.1|
+
+Differences run in both directions, so this is not a truncation artefact: some
+projects allocate more across the four products than the Board approved, others
+less. Both are impossible for a single project and both are in the file.
+
+## Q29. Multi-product projects
+
+**1,594 projects, 31.9% of the file.** 1,188 carry two products and 406 carry
+three; no project carries four. Eight largest:
+
+|project_name|country|region|status|loan_usd_mm|equity_usd_mm|guarantee_usd_mm|risk_mgmt_usd_mm|product_count|total_approved_usd_mm|
+|---|---|---|---|---|---|---|---|---|---|
+|Anven Bank SME Credit Line|Azerbaijan|Europe & Central Asia|Pending|316.1|43.2|0.0|1.2|3|299.0|
+|Danmi Agro Processing Expansion|Colombia|Latin America|Pending|274.3|72.3|40.2|0.0|3|298.6|
+|Sorni Agro Processing Expansion|Venezuela|Latin America|Closed|173.2|0.0|0.0|125.3|3|298.5|
+|Danyor Farms Processing Expansion II|Uganda|Sub-Saharan Africa|Closed|39.8|68.8|0.0|189.9|3|298.5|
+|Kaomni Bank Green Credit Line|Zambia|Sub-Saharan Africa|Dropped|239.4|24.5|34.3|0.0|3|298.2|
+|Vetula Bank Microfinance|Malaysia|East Asia & Pacific|Dropped|197.9|1.3|0.0|98.3|3|297.5|
+|Mijul Farms Dairy 2015|Burundi|Sub-Saharan Africa|Closed|0.0|0.8|41.5|252.2|3|294.5|
+|Nirmar Farms Processing Expansion|Brazil|Latin America|Dropped|0.0|175.3|7.6|110.8|3|293.6|
+
+## Q30. Region by industry heatmap, excluding Dropped
+
+Long format, one row per cell. **33 cells**: 7 regions, 5 industries, and two
+combinations the file does not contain, which is why the grid is not 35.
+
+|region|industry|projects|approved_usd_mm|
+|---|---|---|---|
+|East Asia & Pacific|Manufacturing|138|23175.6|
+|East Asia & Pacific|Finance|136|21263.5|
+|East Asia & Pacific|Agribusiness|144|20690.8|
+|East Asia & Pacific|Energy|131|18416.1|
+|East Asia & Pacific|Telecom|121|18300.9|
+|Europe & Central Asia|Agribusiness|110|16210.6|
+|Europe & Central Asia|Manufacturing|109|15894.9|
+|Europe & Central Asia|Telecom|112|15306.4|
+|Europe & Central Asia|Energy|100|15035.0|
+|Europe & Central Asia|Finance|96|13527.6|
+|Latin America|Energy|158|24738.4|
+|Latin America|Finance|151|23442.6|
+|Latin America|Manufacturing|158|22974.3|
+|Latin America|Telecom|153|22398.8|
+|Latin America|Agribusiness|130|18108.7|
+|Middle East|Agribusiness|85|12612.5|
+|Middle East|Energy|70|10636.7|
+|Middle East|Manufacturing|72|10447.4|
+|Middle East|Finance|62|10259.8|
+|Middle East|Telecom|64|8148.6|
+|North America|Energy|2|421.3|
+|North America|Telecom|2|213.8|
+|North America|Finance|1|14.8|
+|South Asia|Agribusiness|91|14002.0|
+|South Asia|Manufacturing|84|12179.5|
+|South Asia|Finance|78|11816.0|
+|South Asia|Energy|76|9719.2|
+|South Asia|Telecom|67|8716.7|
+|Sub-Saharan Africa|Agribusiness|226|35198.5|
+|Sub-Saharan Africa|Energy|227|32814.3|
+|Sub-Saharan Africa|Telecom|209|31606.6|
+|Sub-Saharan Africa|Finance|204|29863.6|
+|Sub-Saharan Africa|Manufacturing|201|26962.7|
+
+Sub-Saharan Africa holds all five of the largest single cells. The heatmap's
+story is not that the region is concentrated in one sector, it is that it is
+uniformly large across every sector: the spread between its best and worst cell
+is USD 8,236 million, while Latin America's spreads across USD 6,630 million
+from a base two thirds the size. North America has three cells and 650 million
+in total, which is the honest reason it never appears in a regional ranking.
