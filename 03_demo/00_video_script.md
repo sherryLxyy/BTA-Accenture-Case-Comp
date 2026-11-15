@@ -15,6 +15,12 @@ The workspace may or may not be reachable on the day. Each beat therefore lists
 two ways to shoot it: **LIVE** if Databricks opens and executes, and **STILL**
 if it does not. Both produce the same three minutes; only the footage changes.
 
+**Setting up the workspace before recording** is a separate job and has its own
+runbook: `03_demo/01_setup_and_recording.md`. It covers creating the trial
+account, uploading the CSVs, running the nine SQL steps, building the Genie
+space, and running the seventeen notebook cells that produce the three screens
+this script needs. Do that first; this page assumes the screens already exist.
+
 ---
 
 ## Before recording
