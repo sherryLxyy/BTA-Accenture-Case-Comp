@@ -134,7 +134,7 @@ Run in this order. Each script is safe to re-run.
 | 5 | `01_data/04_analytics_layer.sql` | `config_params`, `projects_excl_dropped`, `project_text_flags` |
 | 6 | `04_answers/ws1/01_ws1_answers.sql` | All 30 questions, one block per question |
 | 7 | `04_answers/ws2/01_ws2_answers.sql` | Two Board answers plus the sensitivity |
-| 8 | `04_answers/ws3/01` then `02` then `03` | `client_portfolio`, then `client_score`, then the four names |
+| 8 | `04_answers/ws3/01` then `02` then `03` | `client_portfolio`, then `client_score`, then the four names. Run all three: see the note below. |
 | 9 | `00_setup/05_grant_reviewers.sql` | Catalog, schema and volume grants for the four reviewers |
 
 Every answer reads `ifc.curated.portfolio`, the project table joined to
@@ -150,6 +150,19 @@ the whole book and the second is not.
 **Steps 1 to 8 are SQL and run anywhere.** Step 9 adds the four named reviewers
 to the workspace and will fail anywhere they do not exist; skip it unless you
 are setting up the competition workspace itself.
+
+**Do not stop at step 8's second file.** `02_ws3_shortlist.sql` and
+`03_ws3_finalists.sql` both write `ifc.analytics.client_score`, and the third
+silently replaces the second. That is deliberate - the second file is the first
+pass and the third is its correction - but it means a reader who stops early
+gets a complete, plausible answer built on the wrong population.
+
+The first pass scores every client including the 1,232 projects with no
+`client_id`. Those projects are Pending, so their `performance_status` is also
+NULL, which reads as perfectly clean. A null client carrying USD 187,440
+million of approved investment therefore ranks first on growth. The third file
+excludes them and recomputes the percentiles against the 399 real clients. The
+correct `client_score` has 399 rows.
 
 ---
 
