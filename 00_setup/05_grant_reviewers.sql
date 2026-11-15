@@ -2,7 +2,7 @@
    Reviewer access grants
 
    Source: Submission Access Checklist (Nov 10), page 2 shortcut.
-   Deadline: Sunday 15 November 2026, 23:59 EST.
+   Deadline: Monday 16 November 2026, 23:59 EST.
 
    Reviewers assess the solution inside the team workspace, so every
    object needs its own permission. Workspace admin alone is not enough.
