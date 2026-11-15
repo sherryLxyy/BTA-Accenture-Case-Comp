@@ -42,9 +42,9 @@ reproducible SQL; everything below it is the raw file untouched.
 **Two thirds of the approved capital has never been drawn.** Of USD 742.6
 billion approved, USD 296.7 billion is disbursed and USD 445.9 billion is not.
 Forty-two per cent of that undrawn balance, USD 187.4 billion, sits in 1,232
-projects that are still Pending and have no client assigned at all. The
-capital is not stuck in a relationship that has gone bad; it is stuck before a
-relationship exists.
+projects that were dropped before any client was attached. None of it is stuck
+in a relationship that has gone bad; it sits in approvals that were cancelled
+before a relationship began.
 
 **Default is concentrated, and the clean names are scarce.** Above a
 materiality floor of USD 5,000 million approved there are 18 clients holding
@@ -158,11 +158,13 @@ pass and the third is its correction - but it means a reader who stops early
 gets a complete, plausible answer built on the wrong population.
 
 The first pass scores every client including the 1,232 projects with no
-`client_id`. Those projects are Pending, so their `performance_status` is also
-NULL, which reads as perfectly clean. A null client carrying USD 187,440
-million of approved investment therefore ranks first on growth. The third file
-excludes them and recomputes the percentiles against the 399 real clients. The
-correct `client_score` has 399 rows.
+`client_id`. Those are the Dropped projects: they never reached a client, so
+the monitoring table holds no row for them and the LEFT JOIN leaves both
+`client_id` and `performance_status` NULL. NULL performance reads as perfectly
+clean. A null client carrying USD 187,440 million of approved investment
+therefore ranks first on growth. The third file excludes them and recomputes
+the percentiles against the 399 real clients. The correct `client_score` has
+399 rows.
 
 ---
 
@@ -261,11 +263,12 @@ answer. Each answer file lists the IDs it depends on.
 ## What this analysis does not do
 
 **The client view covers 74.8% of approved value.** 1,232 of 5,000 projects
-carry no `client_id`. They are Pending, and their performance status is also
-NULL, which means a naive scoring pass treats them as perfectly clean and puts
-an unlabelled row with USD 187.4 billion approved at the top of the growth
-ranking. The client analysis excludes them explicitly and says so on every
-page. It covers 3,768 projects and USD 555.1 billion.
+carry no `client_id`. They are Dropped, so the monitoring table has no row for
+them and their performance status is NULL as well, which means a naive scoring
+pass treats them as perfectly clean and puts an unlabelled row with USD 187.4
+billion approved at the top of the growth ranking. The client analysis excludes
+them explicitly and says so on every page. It covers 3,768 projects and USD
+555.1 billion.
 
 **The scores are relative, not absolute.** `attention_score` and `growth_score`
 are weighted percentile ranks across 399 clients. They answer "how does this

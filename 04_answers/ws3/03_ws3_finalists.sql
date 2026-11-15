@@ -3,9 +3,10 @@
 
    Two corrections applied here, both found by the first pass.
 
-   1. 1,232 projects have no client_id. They are Pending projects that
-      have not been assigned to a client yet. Because their
-      performance_status is also NULL, they scored as perfectly clean
+   1. 1,232 projects have no client_id. They are the Dropped projects,
+      which never reached a client, so the monitoring table holds no
+      row for them and the LEFT JOIN leaves client_id NULL. That also
+      makes performance_status NULL, so they scored as perfectly clean
       and a NULL client row appeared at the top of the growth list
       with USD 187,440 million approved. The client view must exclude
       them. That leaves 3,768 projects and USD 555,119 million, 74.8%
@@ -77,7 +78,7 @@ FROM scored;
    ------------------------------------------------------------ */
 SELECT
   CASE WHEN client_id IS NULL
-       THEN 'No client assigned (Pending)'
+       THEN 'No client assigned (Dropped)'
        ELSE 'Client assigned' END                                AS scope,
   COUNT(*)                                                        AS projects,
   ROUND(SUM(total_approved_usd_mm), 2)                            AS approved_usd_mm,

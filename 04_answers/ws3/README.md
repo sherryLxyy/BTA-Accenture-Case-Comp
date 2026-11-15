@@ -222,7 +222,8 @@ consistent with WS2 and reconciles to it.
 ## Limitations
 
 **Client coverage is 74.8% of the book.** 1,232 projects holding USD 187,440
-million have no `client_id`; they are Pending and not yet assigned. Every
+million have no `client_id`; they are Dropped, so no client was ever attached
+and the monitoring table holds no row for them. Every
 client-level figure in this report excludes them. A Board reading the
 undisbursed total should know that USD 187,440 million of it belongs to
 projects with no client at all, and the deployment gap in the assigned book
