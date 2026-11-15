@@ -174,7 +174,7 @@ the workspace that runs it:
 
 | Need | Locate by | Note |
 |---|---|---|
-| A Genie space over `ifc.analytics` | search `GENIE_SPACE_ID` | Defined in two adjacent cells near the top; set both. The ID in the file belongs to our workspace and will not resolve in yours. Create a space over the same tables and paste its ID. |
+| A Genie space | search `GENIE_SPACE_ID` | Defined in two adjacent cells near the top; set both. The ID in the file belongs to our workspace and will not resolve in yours. Build the space as described below and paste its ID. |
 | A chat-completion endpoint | search `MODEL =` | Set to `databricks-gpt-oss-120b`. Any serving endpoint that speaks the chat API will do; change the constant. |
 | `databricks-openai` | the `%pip` cells | After `%pip` use **Run > Restart Python**, then continue. Run All does not restart the interpreter, so the import fails on a cold start. The client cell falls back to the workspace credentials if the package is absent. |
 
@@ -182,6 +182,51 @@ The four tools read `ifc.curated.portfolio` and `ifc.analytics.client_score`, so
 steps 1 to 8 must have completed. Beyond the three items above, the notebook has
 no dependency on our workspace. The notebook decides which tool to call; it
 does not compute any figure itself.
+
+### Building the Genie space
+
+The space is part of the answer surface, not a convenience. `query_portfolio`
+passes the model's question straight through and returns whatever SQL Genie
+wrote, so whichever tables the space holds become tables the agent can answer
+from.
+
+**Add `ifc.curated.portfolio` and nothing else.** Not `projects`, not
+`monitoring`, and not `analytics.client_score`. `client_score` is what the
+`recommend_clients` tool reads; putting it in the space too gives the model two
+paths to the same client question that round differently, and the reviewer sees
+the disagreement before they see the reasoning.
+
+**Run step 4 first.** `01_data/03_add_comments.sql` writes the table and column
+comments, and Genie reads those comments as business semantics. Without them the
+space guesses that amounts are in dollars and that `project_number` is a key.
+On top of the comments, add these rules to the space instructions:
+
+1. Every answer reads `ifc.curated.portfolio`. Do not query another table.
+2. Amounts are already USD millions. Never multiply by a million to report USD.
+3. `project_url` is the only unique key. `project_number` repeats across unrelated
+   projects (1,126 values map to more than one) and must never be used for JOIN,
+   GROUP BY or deduplication.
+4. `performance_status` is NULL for exactly the 1,233 Pending projects. NULL means
+   not yet monitored, never evidence of good performance.
+5. The 1,232 Dropped projects have no monitoring row at all, so
+   `performance_status IS NOT NULL` quietly excludes USD 187,440 million of
+   approved investment. State the exclusion whenever that filter is applied.
+6. `Past Due` is 91 projects and `Watchlist` is 164 across all categories.
+   Category A narrows that to 35 and 60. The category filter is part of the Board
+   question, not an optional cut.
+7. For "the last N years", anchor on `approval_date` and say which window was used.
+8. If the result is truncated, say so and do not total or rank the rows shown.
+
+**Sample questions to validate the space on creation:**
+
+- How many projects are in the portfolio?
+- What is total approved investment by region for projects approved in the last five years?
+- For Category A projects, how much disbursed capital is Past Due or Watchlist?
+- Which countries have more than USD 1,000 million of approved loan investment?
+
+Every one of them should come back with SQL that reads only
+`ifc.curated.portfolio`. A sample question that fails means a missing comment or
+a missing grant, not a missing instruction.
 
 **The notebook is checked in without output.** Its last execution happened in a
 workspace that is no longer reachable, and the stored outputs went with it.
