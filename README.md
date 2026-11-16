@@ -180,10 +180,13 @@ the workspace that runs it:
 | A chat-completion endpoint | search `MODEL =` | Set to `databricks-gpt-oss-120b`. Any serving endpoint that speaks the chat API will do; change the constant. |
 | `databricks-openai` | the `%pip` cells | After `%pip` use **Run > Restart Python**, then continue. Run All does not restart the interpreter, so the import fails on a cold start. The client cell falls back to the workspace credentials if the package is absent. |
 
-The four tools read `ifc.curated.portfolio` and `ifc.analytics.client_score`, so
-steps 1 to 8 must have completed. Beyond the three items above, the notebook has
-no dependency on our workspace. The notebook decides which tool to call; it
-does not compute any figure itself.
+The three tools on the answer path read `ifc.curated.portfolio` and
+`ifc.analytics.client_score`, so steps 1 to 8 must have completed. A fourth,
+`analyze_client_risk`, is defined earlier in the notebook as the first attempt at
+the client question; `recommend_clients` replaced it once the WS3 scoring was
+reconciled, and registering it needs two cells the answer path skips. Beyond the
+three items above, the notebook has no dependency on our workspace. The notebook
+decides which tool to call; it does not compute any figure itself.
 
 ### Building the Genie space
 

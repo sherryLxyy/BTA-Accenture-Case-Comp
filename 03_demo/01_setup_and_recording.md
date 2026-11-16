@@ -320,11 +320,18 @@ still images and five are live screens, and every live one has a STILL fallback.
 | 0:35 | same document, the duplicated-number example | same |
 | 0:43 | section P6, the 1,232 figure visible | same |
 | 1:04 | Catalog tree, `ifc` expanded to three schemas | Catalog -> `ifc` |
-| 1:20 | the agent cell and its four tool names | cell 27 |
+| 1:20 | the tool definitions | cell 27, and the third is added by cell 82 |
 | 1:35 | the four-client table | output of cell 84 |
 | 1:58 | the eight-row shortlist | output of cell 83 |
 | 2:07 | the ANSWER AUDIT PASS line | bottom of cell 84's output |
 | 2:37 | back to the diagram, fade out | same as 0:00 |
+
+The narration says three tools because that is what the answer path registers:
+`query_portfolio` in cell 6, `calculate_credit_risk` in cell 10, and
+`recommend_clients`, added by cell 82. The notebook also defines a fourth,
+`analyze_client_risk`, in cells 38 and 41, but those are not among the 17 and the
+answer does not use it. If you show cell 27 on camera, expect **two** names on
+screen rather than three: the third only arrives at 82.
 
 ### Three things before you press record
 

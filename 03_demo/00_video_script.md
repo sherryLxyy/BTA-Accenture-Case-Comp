@@ -50,7 +50,7 @@ this script needs. Do that first; this page assumes the screens already exist.
 | 0:35 | Same document, the shared-number example | STILL | "Join on the number instead..." |
 | 0:43 | Section P6, the 1,232 figure visible | STILL | "A quarter of approved value..." |
 | 1:04 | Catalog tree, `ifc` expanded to three schemas | LIVE catalog, or STILL | "Three layers in Unity Catalog." |
-| 1:20 | Notebook, agent cell and its four tool names | LIVE run, or STILL | "The agent has four tools." |
+| 1:20 | Notebook, cell 27, the tool definitions | LIVE run, or STILL | "The agent has three tools." |
 | 1:35 | The four-client table | LIVE output, or STILL | "Asked which two to back..." |
 | 1:58 | The eight-row shortlist below it | LIVE output, or STILL | "It also prints the shortlist..." |
 | 2:07 | `ANSWER AUDIT` block, PASS line visible | LIVE output, or STILL | "The agent audits its own answer..." |
@@ -98,10 +98,10 @@ recoverable and a fast start is not.
 
 **1:20** — 37 words, 15s  →  next beat 1:35
 
-> The agent has four tools: portfolio facts through Genie, a credit calculation
-> using the case's sixty percent loss assumption, a single-client profile, and
-> the review shortlist. Which one to call is the model's decision, not a
-> script.
+> The agent has three tools: portfolio facts through Genie, a credit
+> calculation using the case's sixty percent loss assumption, and a client
+> review shortlist with evidence. Which one to call is the model's decision,
+> not a script.
 
 **1:35** — 59 words, 24s  →  next beat 1:58
 
