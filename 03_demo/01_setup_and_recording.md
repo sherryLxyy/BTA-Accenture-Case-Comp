@@ -316,7 +316,7 @@ still images and five are live screens, and every live one has a STILL fallback.
 | Time | What is on screen | Where |
 |---|---|---|
 | 0:00 | architecture diagram | `assets/architecture_diagram_agentic_solution.png` |
-| 0:13 | the data quality note, section P1 | `docs/数据质量备忘.md` |
+| 0:13 | the data quality note, section P1 | `docs/data_quality_memo.md`, or the original `docs/数据质量备忘.md` |
 | 0:35 | same document, the duplicated-number example | same |
 | 0:43 | section P6, the 1,232 figure visible | same |
 | 1:04 | Catalog tree, `ifc` expanded to three schemas | Catalog -> `ifc` |

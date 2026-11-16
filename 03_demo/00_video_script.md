@@ -15,6 +15,11 @@ The workspace may or may not be reachable on the day. Each beat therefore lists
 two ways to shoot it: **LIVE** if Databricks opens and executes, and **STILL**
 if it does not. Both produce the same three minutes; only the footage changes.
 
+One document exists twice. `docs/data_quality_memo.md` is the English version of
+`docs/数据质量备忘.md`, and the section labels P1 to P7 are identical in both, so
+a timestamp pointing at P1 or P6 lands on the same passage whichever file was
+filmed.
+
 **Setting up the workspace before recording** is a separate job and has its own
 runbook: `03_demo/01_setup_and_recording.md`. It covers creating the trial
 account, uploading the CSVs, running the nine SQL steps, building the Genie
@@ -46,7 +51,7 @@ this script needs. Do that first; this page assumes the screens already exist.
 | Time | On screen | Source | First words |
 |---|---|---|---|
 | 0:00 | Architecture diagram, slow push in | STILL `assets/architecture_diagram_agentic_solution.png` | "IFC's book is five thousand..." |
-| 0:13 | `docs/数据质量备忘.md`, section P1 | STILL or LIVE GitHub | "Everything here comes from two..." |
+| 0:13 | `docs/data_quality_memo.md`, section P1 | STILL or LIVE GitHub | "Everything here comes from two..." |
 | 0:35 | Same document, the shared-number example | STILL | "Join on the number instead..." |
 | 0:43 | Section P6, the 1,232 figure visible | STILL | "A quarter of approved value..." |
 | 1:04 | Catalog tree, `ifc` expanded to three schemas | LIVE catalog, or STILL | "Three layers in Unity Catalog." |
