@@ -16,9 +16,13 @@ the numbers were produced.
 | `00_setup/` | Environment bootstrap and the reviewer access grants |
 | `01_data/` | Load, data quality checks, column comments, derived analytics layer |
 | `02_agent/` | The agent notebook: three tools, orchestrator, guardrails, evaluation |
-| `03_demo/` | Demo materials |
+| `03_demo/` | The three-minute walkthrough: the shot list, the setup runbook, and the recording |
 | `04_answers/` | WS1 (30 questions), WS2 (Board risk question), WS3 (client recommendation) |
 | `assets/` | Architecture diagram, generated from `assets/_build_arch.py` |
+
+The recording, so that a reviewer does not have to go back to the submission email:
+**[BigBang demo - three-minute walkthrough](https://drive.google.com/file/d/1t_ScBfyb4s0RDKjpDkbRAj_wQB5ThtKB/view)**.
+It is public; no sign-in needed.
 
 ---
 
