@@ -102,3 +102,5 @@ GRANT READ VOLUME ON VOLUME ifc.raw.raw_files
    folder, runs a notebook top to bottom, opens the Genie space and asks
    a question, then asks the agent a question. Any failure is a missing
    permission, not a code problem. */
+
+SELECT 1;
