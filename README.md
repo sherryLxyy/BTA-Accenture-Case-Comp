@@ -16,9 +16,13 @@ the numbers were produced.
 | `00_setup/` | Environment bootstrap and the reviewer access grants |
 | `01_data/` | Load, data quality checks, column comments, derived analytics layer |
 | `02_agent/` | The agent notebook: three tools, orchestrator, guardrails, evaluation |
-| `03_demo/` | Demo materials |
+| `03_demo/` | The three-minute walkthrough: the shot list, the setup runbook, and the recording |
 | `04_answers/` | WS1 (30 questions), WS2 (Board risk question), WS3 (client recommendation) |
 | `assets/` | Architecture diagram, generated from `assets/_build_arch.py` |
+
+The recording, so that a reviewer does not have to go back to the submission email:
+**[BigBang demo - three-minute walkthrough](https://drive.google.com/file/d/1t_ScBfyb4s0RDKjpDkbRAj_wQB5ThtKB/view)**.
+It is public; no sign-in needed.
 
 ---
 
@@ -180,10 +184,13 @@ the workspace that runs it:
 | A chat-completion endpoint | search `MODEL =` | Set to `databricks-gpt-oss-120b`. Any serving endpoint that speaks the chat API will do; change the constant. |
 | `databricks-openai` | the `%pip` cells | After `%pip` use **Run > Restart Python**, then continue. Run All does not restart the interpreter, so the import fails on a cold start. The client cell falls back to the workspace credentials if the package is absent. |
 
-The four tools read `ifc.curated.portfolio` and `ifc.analytics.client_score`, so
-steps 1 to 8 must have completed. Beyond the three items above, the notebook has
-no dependency on our workspace. The notebook decides which tool to call; it
-does not compute any figure itself.
+The three tools on the answer path read `ifc.curated.portfolio` and
+`ifc.analytics.client_score`, so steps 1 to 8 must have completed. A fourth,
+`analyze_client_risk`, is defined earlier in the notebook as the first attempt at
+the client question; `recommend_clients` replaced it once the WS3 scoring was
+reconciled, and registering it needs two cells the answer path skips. Beyond the
+three items above, the notebook has no dependency on our workspace. The notebook
+decides which tool to call; it does not compute any figure itself.
 
 ### Building the Genie space
 
